@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;title&gt;Department of Bitcoin | Digital Asset Intelligence Portal&lt;/title&gt;</p>
+<p class="p1">&lt;meta name="description" content="Live Bitcoin market data, ETF flows, treasury holdings and digital asset intelligence."&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- SEO Structured Data --&gt;</p>
+<p class="p1">&lt;script type="application/ld+json"&gt;</p>
+<p class="p1">{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>"@context": "https://schema.org",</p>
+<p class="p1"><span class="Apple-converted-space"> </span>"@type": "WebSite",</p>
+<p class="p1"><span class="Apple-converted-space"> </span>"name": "Department of Bitcoin",</p>
+<p class="p1"><span class="Apple-converted-space"> </span>"url": "https://departmentofbitcoin.com",</p>
+<p class="p1"><span class="Apple-converted-space"> </span>"description": "Independent digital asset intelligence and transparency platform."</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">:root{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>--bg:#f4f6f9;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>--text:#111;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>--primary:#0b1f3a;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>--accent:#c8a200;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">body.dark{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>--bg:#0e243f;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>--text:#fff;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">body{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>margin:0;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>font-family:system-ui;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>background:var(--bg);</p>
+<p class="p1"><span class="Apple-converted-space"> </span>color:var(--text);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">header{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>background:var(--primary);</p>
+<p class="p1"><span class="Apple-converted-space"> </span>color:white;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>padding:20px;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>text-align:center;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.ticker{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>font-size:20px;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>font-weight:bold;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>margin-top:10px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">nav{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>display:flex;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>justify-content:center;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>gap:20px;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>padding:15px;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>flex-wrap:wrap;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">select,button{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>padding:6px 10px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.dashboard{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>display:grid;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>grid-template-columns:repeat(auto-fit,minmax(200px,1fr));</p>
+<p class="p1"><span class="Apple-converted-space"> </span>gap:20px;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>padding:30px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.card{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>background:white;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>padding:15px;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>border-left:5px solid var(--accent);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">body.dark .card{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>background:#1b355e;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">section{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>padding:30px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.progress{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>width:100%;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>height:20px;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>background:#ddd;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">#progressBar{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>height:100%;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>background:var(--accent);</p>
+<p class="p1"><span class="Apple-converted-space"> </span>width:0%;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">table{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>width:100%;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>border-collapse:collapse;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>margin-top:15px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">th,td{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>border:1px solid #ccc;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>padding:8px;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>text-align:left;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">footer{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>background:var(--primary);</p>
+<p class="p1"><span class="Apple-converted-space"> </span>color:white;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>text-align:center;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>padding:20px;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>font-size:14px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.disclaimer{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>font-size:12px;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>opacity:0.7;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>margin-top:5px;</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;header&gt;</p>
+<p class="p1">&lt;h1&gt;Department of Bitcoin&lt;/h1&gt;</p>
+<p class="p1">&lt;p&gt;Independent Digital Asset Intelligence Portal&lt;/p&gt;</p>
+<p class="p1">&lt;div class="ticker" id="liveTicker"&gt;Live BTC Price: --&lt;/div&gt;</p>
+<p class="p1">&lt;button onclick="toggleTheme()"&gt;Toggle Theme&lt;/button&gt;</p>
+<p class="p1">&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;nav&gt;</p>
+<p class="p1">&lt;select id="asset"&gt;</p>
+<p class="p1">&lt;option value="bitcoin"&gt;Bitcoin&lt;/option&gt;</p>
+<p class="p1">&lt;option value="ethereum"&gt;Ethereum&lt;/option&gt;</p>
+<p class="p1">&lt;option value="solana"&gt;Solana&lt;/option&gt;</p>
+<p class="p1">&lt;option value="tether"&gt;Tether&lt;/option&gt;</p>
+<p class="p1">&lt;/select&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;select id="days"&gt;</p>
+<p class="p1">&lt;option value="1"&gt;1D&lt;/option&gt;</p>
+<p class="p1">&lt;option value="7"&gt;7D&lt;/option&gt;</p>
+<p class="p1">&lt;option value="30" selected&gt;1M&lt;/option&gt;</p>
+<p class="p1">&lt;option value="90"&gt;3M&lt;/option&gt;</p>
+<p class="p1">&lt;option value="365"&gt;1Y&lt;/option&gt;</p>
+<p class="p1">&lt;option value="max"&gt;ALL&lt;/option&gt;</p>
+<p class="p1">&lt;/select&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section class="dashboard"&gt;</p>
+<p class="p1">&lt;div class="card"&gt;&lt;h3&gt;Price&lt;/h3&gt;&lt;p id="price"&gt;&lt;/p&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="card"&gt;&lt;h3&gt;Market Cap&lt;/h3&gt;&lt;p id="cap"&gt;&lt;/p&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="card"&gt;&lt;h3&gt;24h Change&lt;/h3&gt;&lt;p id="change"&gt;&lt;/p&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="card"&gt;&lt;h3&gt;BTC Dominance&lt;/h3&gt;&lt;p id="dom"&gt;&lt;/p&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="card"&gt;&lt;h3&gt;Lightning Capacity&lt;/h3&gt;&lt;p id="lightning"&gt;&lt;/p&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="card"&gt;&lt;h3&gt;Mempool TX&lt;/h3&gt;&lt;p id="mempool"&gt;&lt;/p&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section&gt;</p>
+<p class="p1">&lt;h2&gt;Price Chart&lt;/h2&gt;</p>
+<p class="p1">&lt;canvas id="chart"&gt;&lt;/canvas&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section&gt;</p>
+<p class="p1">&lt;h2&gt;Bitcoin Supply Progress&lt;/h2&gt;</p>
+<p class="p1">&lt;div class="progress"&gt;</p>
+<p class="p1">&lt;div id="progressBar"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section&gt;</p>
+<p class="p1">&lt;h2&gt;ETF Exposure Tracker (Market Proxy)&lt;/h2&gt;</p>
+<p class="p1">&lt;table id="etfTable"&gt;</p>
+<p class="p1">&lt;thead&gt;</p>
+<p class="p1">&lt;tr&gt;&lt;th&gt;Asset&lt;/th&gt;&lt;th&gt;Price&lt;/th&gt;&lt;th&gt;Market Cap&lt;/th&gt;&lt;/tr&gt;</p>
+<p class="p1">&lt;/thead&gt;</p>
+<p class="p1">&lt;tbody&gt;&lt;/tbody&gt;</p>
+<p class="p1">&lt;/table&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section&gt;</p>
+<p class="p1">&lt;h2&gt;Corporate Treasury Tracker&lt;/h2&gt;</p>
+<p class="p1">&lt;table&gt;</p>
+<p class="p1">&lt;thead&gt;</p>
+<p class="p1">&lt;tr&gt;&lt;th&gt;Company&lt;/th&gt;&lt;th&gt;BTC Holdings&lt;/th&gt;&lt;th&gt;Est. USD Value&lt;/th&gt;&lt;/tr&gt;</p>
+<p class="p1">&lt;/thead&gt;</p>
+<p class="p1">&lt;tbody id="treasuryTable"&gt;&lt;/tbody&gt;</p>
+<p class="p1">&lt;/table&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;footer&gt;</p>
+<p class="p1">© 2026 DepartmentOfBitcoin.com</p>
+<p class="p1">&lt;p class="disclaimer"&gt;</p>
+<p class="p1">This website is an independent data initiative and is not affiliated with any government entity.</p>
+<p class="p1">&lt;/p&gt;</p>
+<p class="p1">&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">let chart;</p>
+<p class="p2"><br></p>
+<p class="p1">// Live WebSocket BTC ticker</p>
+<p class="p1">const socket = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@trade");</p>
+<p class="p1">socket.onmessage = (event)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space"> </span>const data = JSON.parse(event.data);</p>
+<p class="p1"><span class="Apple-converted-space"> </span>document.getElementById("liveTicker").innerText =</p>
+<p class="p1"><span class="Apple-converted-space"> </span>"Live BTC Price: $" + parseFloat(data.p).toLocaleString();</p>
+<p class="p1">};</p>
+<p class="p2"><br></p>
+<p class="p1">// Main loader</p>
+<p class="p1">async function loadData(){</p>
+<p class="p1"><span class="Apple-converted-space"> </span>const asset=document.getElementById("asset").value;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>const days=document.getElementById("days").value;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>const market=await fetch(</p>
+<p class="p1"><span class="Apple-converted-space">  </span>`https://api.coingecko.com/api/v3/coins/${asset}?localization=false&amp;market_data=true`</p>
+<p class="p1"><span class="Apple-converted-space"> </span>).then(r=&gt;r.json());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>const chartData=await fetch(</p>
+<p class="p1"><span class="Apple-converted-space">  </span>`https://api.coingecko.com/api/v3/coins/${asset}/market_chart?vs_currency=usd&amp;days=${days}`</p>
+<p class="p1"><span class="Apple-converted-space"> </span>).then(r=&gt;r.json());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>const global=await fetch(</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"https://api.coingecko.com/api/v3/global"</p>
+<p class="p1"><span class="Apple-converted-space"> </span>).then(r=&gt;r.json());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>const lightning=await fetch(</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"https://mempool.space/api/v1/lightning/statistics/latest"</p>
+<p class="p1"><span class="Apple-converted-space"> </span>).then(r=&gt;r.json());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>const mempool=await fetch(</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"https://mempool.space/api/mempool"</p>
+<p class="p1"><span class="Apple-converted-space"> </span>).then(r=&gt;r.json());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>document.getElementById("price").innerText=</p>
+<p class="p1"><span class="Apple-converted-space"> </span>"$"+market.market_data.current_price.usd.toLocaleString();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>document.getElementById("cap").innerText=</p>
+<p class="p1"><span class="Apple-converted-space"> </span>"$"+market.market_data.market_cap.usd.toLocaleString();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>document.getElementById("change").innerText=</p>
+<p class="p1"><span class="Apple-converted-space"> </span>market.market_data.price_change_percentage_24h.toFixed(2)+"%";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>document.getElementById("dom").innerText=</p>
+<p class="p1"><span class="Apple-converted-space"> </span>global.data.market_cap_percentage.btc.toFixed(2)+"%";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>document.getElementById("lightning").innerText=</p>
+<p class="p1"><span class="Apple-converted-space"> </span>lightning.total_capacity+" BTC";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>document.getElementById("mempool").innerText=</p>
+<p class="p1"><span class="Apple-converted-space"> </span>mempool.count+" TX";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>const percent=(market.market_data.circulating_supply/21000000)*100;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>document.getElementById("progressBar").style.width=percent+"%";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>const prices=chartData.prices.map(p=&gt;p[1]);</p>
+<p class="p1"><span class="Apple-converted-space"> </span>const labels=chartData.prices.map(p=&gt;new Date(p[0]).toLocaleDateString());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>if(chart) chart.destroy();</p>
+<p class="p1"><span class="Apple-converted-space"> </span>chart=new Chart(document.getElementById("chart"),{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>type:"line",</p>
+<p class="p1"><span class="Apple-converted-space">  </span>data:{</p>
+<p class="p1"><span class="Apple-converted-space">   </span>labels,</p>
+<p class="p1"><span class="Apple-converted-space">   </span>datasets:[{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>data:prices,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>borderColor:"#c8a200",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>fill:true</p>
+<p class="p1"><span class="Apple-converted-space">   </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space"> </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>loadETFProxy();</p>
+<p class="p1"><span class="Apple-converted-space"> </span>loadTreasury(market.market_data.current_price.usd);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ETF Proxy Table</p>
+<p class="p1">async function loadETFProxy(){</p>
+<p class="p1"><span class="Apple-converted-space"> </span>const data=await fetch(</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&amp;ids=bitcoin,ethereum,solana,tether"</p>
+<p class="p1"><span class="Apple-converted-space"> </span>).then(r=&gt;r.json());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>const tbody=document.querySelector("#etfTable tbody");</p>
+<p class="p1"><span class="Apple-converted-space"> </span>tbody.innerHTML="";</p>
+<p class="p1"><span class="Apple-converted-space"> </span>data.forEach(asset=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>tbody.innerHTML+=`</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">   </span>&lt;td&gt;${asset.name}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">   </span>&lt;td&gt;$${asset.current_price.toLocaleString()}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">   </span>&lt;td&gt;$${asset.market_cap.toLocaleString()}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/tr&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>});</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Corporate Treasury Demo Data</p>
+<p class="p1">function loadTreasury(btcPrice){</p>
+<p class="p1"><span class="Apple-converted-space"> </span>const companies=[</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{name:"MicroStrategy",btc:214000},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{name:"Tesla",btc:9720},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{name:"Block Inc.",btc:8027}</p>
+<p class="p1"><span class="Apple-converted-space"> </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>const tbody=document.getElementById("treasuryTable");</p>
+<p class="p1"><span class="Apple-converted-space"> </span>tbody.innerHTML="";</p>
+<p class="p1"><span class="Apple-converted-space"> </span>companies.forEach(c=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>tbody.innerHTML+=`</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">   </span>&lt;td&gt;${c.name}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">   </span>&lt;td&gt;${c.btc.toLocaleString()}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">   </span>&lt;td&gt;$${(c.btc*btcPrice).toLocaleString()}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/tr&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>});</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function toggleTheme(){</p>
+<p class="p1"><span class="Apple-converted-space"> </span>document.body.classList.toggle("dark");</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">document.getElementById("asset").onchange=loadData;</p>
+<p class="p1">document.getElementById("days").onchange=loadData;</p>
+<p class="p2"><br></p>
+<p class="p1">loadData();</p>
+<p class="p1">setInterval(loadData,60000);</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
