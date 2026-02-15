@@ -3,121 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Department of Bitcoin | Digital Asset Portal</title>
-<meta name="description" content="Live Bitcoin market data, charts, ETF tracker, corporate treasury holdings, and more.">
-<link rel="icon" type="image/png" href="favicon.png">
+<title>Department of Bitcoin | Live Digital Asset Dashboard</title>
+<meta name="description" content="Official Bitcoin and digital asset market data. Charts, ETF tracker, corporate treasury, and live BTC ticker.">
+
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root {
- --bg:#f4f6f9;
- --text:#111;
- --primary:#0b1f3a;
- --accent:#c8a200;
-}
-body.dark { --bg:#0e243f; --text:#fff; }
-body { margin:0; font-family:system-ui; background:var(--bg); color:var(--text); }
-header{background:var(--primary);color:white;padding:20px;text-align:center;}
-.ticker{font-size:20px;font-weight:bold;margin-top:10px;}
-nav{display:flex;justify-content:center;gap:20px;padding:15px;flex-wrap:wrap;}
-select,button{padding:6px 10px;}
-.dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:30px;}
-.card{background:white;padding:15px;border-left:5px solid var(--accent);}
-body.dark .card{background:#1b355e;}
-section{padding:30px;}
-.progress{width:100%;height:20px;background:#ddd;}
-#progressBar{height:100%;background:var(--accent);width:0%;}
-table{width:100%;border-collapse:collapse;margin-top:15px;}
-th,td{border:1px solid #ccc;padding:8px;text-align:left;}
-footer{background:var(--primary);color:white;text-align:center;padding:20px;font-size:14px;}
-.disclaimer{font-size:12px;opacity:0.7;margin-top:5px;}
+  :root {
+    --bg: #f4f6f9;
+    --text: #111;
+    --primary: #0b1f3a;
+    --accent: #c8a200;
+  }
+  body.dark { --bg: #0e243f; --text:#fff; }
+  body { margin:0; font-family:system-ui, sans-serif; background:var(--bg); color:var(--text);}
+  header{background:var(--primary); color:white; text-align:center; padding:20px;}
+  header img{width:80px;}
+  nav{display:flex; justify-content:center; gap:20px; padding:10px;}
+  .dashboard{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; padding:30px;}
+  .card{border-left:5px solid var(--accent); padding:15px; background:white;}
+  body.dark .card{background:#1b355e;}
+  footer{background:var(--primary); color:white; text-align:center; padding:15px;}
+  .disclaimer{font-size:12px; opacity:0.7;}
+  table{width:100%; border-collapse:collapse; margin-top:20px;}
+  th, td{border:1px solid #ccc; padding:8px; text-align:center;}
+  th{background:var(--primary); color:white;}
+  body.dark th{background:#142c4f;}
 </style>
 </head>
 <body>
-
 <header>
-<h1>Department of Bitcoin</h1>
-<p>Independent Digital Asset Intelligence Portal</p>
-<div class="ticker" id="liveTicker">Live BTC Price: --</div>
-<button onclick="toggleTheme()">Toggle Theme</button>
+  <img src="seal.svg" alt="Official Seal">
+  <h1>Department of Bitcoin</h1>
+  <p>Live Digital Asset Dashboard</p>
+  <button id="themeToggle">Toggle Dark/Light</button>
 </header>
 
 <nav>
-<select id="asset">
-<option value="bitcoin">Bitcoin</option>
-<option value="ethereum">Ethereum</option>
-<option value="solana">Solana</option>
-<option value="tether">Tether</option>
-</select>
-
-<select id="days">
-<option value="1">1D</option>
-<option value="7">7D</option>
-<option value="30" selected>1M</option>
-<option value="90">3M</option>
-<option value="365">1Y</option>
-<option value="max">ALL</option>
-</select>
-</nav>
-
-<section class="dashboard">
-<div class="card"><h3>Price</h3><p id="price"></p></div>
-<div class="card"><h3>Market Cap</h3><p id="cap"></p></div>
-<div class="card"><h3>24h Change</h3><p id="change"></p></div>
-<div class="card"><h3>BTC Dominance</h3><p id="dom"></p></div>
-<div class="card"><h3>Lightning Capacity</h3><p id="lightning"></p></div>
-<div class="card"><h3>Mempool TX</h3><p id="mempool"></p></div>
-</section>
-
-<section>
-<h2>Price Chart</h2>
-<canvas id="chart"></canvas>
-</section>
-
-<section>
-<h2>Bitcoin Supply Progress</h2>
-<div class="progress"><div id="progressBar"></div></div>
-</section>
-
-<section>
-<h2>ETF Exposure Tracker (Market Proxy)</h2>
-<table id="etfTable">
-<thead>
-<tr><th>Asset</th><th>Price</th><th>Market Cap</th></tr>
-</thead>
-<tbody></tbody>
-</table>
-</section>
-
-<section>
-<h2>Corporate Treasury Tracker</h2>
-<table>
-<thead>
-<tr><th>Company</th><th>BTC Holdings</th><th>Est. USD Value</th></tr>
-</thead>
-<tbody id="treasuryTable"></tbody>
-</table>
-</section>
-
-<footer>
-© 2026 DepartmentOfBitcoin.com
-<p class="disclaimer">Independent data initiative, not affiliated with any government entity.</p>
-</footer>
-
-<script>
-let chart;
-
-// Live WebSocket BTC ticker (CORS safe)
-const socket = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@trade");
-socket.onmessage = (event)=>{
- const data = JSON.parse(event.data);
- document.getElementById("liveTicker").innerText =
- "Live BTC Price: $" + parseFloat(data.p).toLocaleString();
-};
-
-// Load main data
-async function loadData(){
- const asset=document.getElementById("asset").value;
- const days=document.getElementById("days").value;
-
- // CoinGecko CORS-enabled API
- const market=await fetch(`https://api.coingecko.com/api/v3/c
+  <select id="assetSelect">
+    <option value="bitcoin">Bitcoin</option>
+    <option value="ethereum">Ethereum</option>
+    <option value="tether">Tether</option>
+    <option value="solana">Solana</option>
+  </select>
+  <select id="timeframe">
+    <option value="1">1D<
