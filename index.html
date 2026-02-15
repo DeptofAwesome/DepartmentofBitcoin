@@ -3,96 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Department of Bitcoin | Digital Asset Intelligence Portal</title>
-<meta name="description" content="Live Bitcoin market data, ETF flows, treasury holdings and digital asset intelligence.">
+<title>Department of Bitcoin | Digital Asset Portal</title>
+<meta name="description" content="Live Bitcoin market data, charts, ETF tracker, corporate treasury holdings, and more.">
+<link rel="icon" type="image/png" href="favicon.png">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root{
+:root {
  --bg:#f4f6f9;
  --text:#111;
  --primary:#0b1f3a;
  --accent:#c8a200;
 }
-body.dark{
- --bg:#0e243f;
- --text:#fff;
-}
-body{
- margin:0;
- font-family:system-ui;
- background:var(--bg);
- color:var(--text);
-}
-header{
- background:var(--primary);
- color:white;
- padding:20px;
- text-align:center;
-}
-.ticker{
- font-size:20px;
- font-weight:bold;
- margin-top:10px;
-}
-nav{
- display:flex;
- justify-content:center;
- gap:20px;
- padding:15px;
- flex-wrap:wrap;
-}
-select,button{
- padding:6px 10px;
-}
-.dashboard{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
- gap:20px;
- padding:30px;
-}
-.card{
- background:white;
- padding:15px;
- border-left:5px solid var(--accent);
-}
-body.dark .card{
- background:#1b355e;
-}
-section{
- padding:30px;
-}
-.progress{
- width:100%;
- height:20px;
- background:#ddd;
-}
-#progressBar{
- height:100%;
- background:var(--accent);
- width:0%;
-}
-table{
- width:100%;
- border-collapse:collapse;
- margin-top:15px;
-}
-th,td{
- border:1px solid #ccc;
- padding:8px;
- text-align:left;
-}
-footer{
- background:var(--primary);
- color:white;
- text-align:center;
- padding:20px;
- font-size:14px;
-}
-.disclaimer{
- font-size:12px;
- opacity:0.7;
- margin-top:5px;
-}
+body.dark { --bg:#0e243f; --text:#fff; }
+body { margin:0; font-family:system-ui; background:var(--bg); color:var(--text); }
+header{background:var(--primary);color:white;padding:20px;text-align:center;}
+.ticker{font-size:20px;font-weight:bold;margin-top:10px;}
+nav{display:flex;justify-content:center;gap:20px;padding:15px;flex-wrap:wrap;}
+select,button{padding:6px 10px;}
+.dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:30px;}
+.card{background:white;padding:15px;border-left:5px solid var(--accent);}
+body.dark .card{background:#1b355e;}
+section{padding:30px;}
+.progress{width:100%;height:20px;background:#ddd;}
+#progressBar{height:100%;background:var(--accent);width:0%;}
+table{width:100%;border-collapse:collapse;margin-top:15px;}
+th,td{border:1px solid #ccc;padding:8px;text-align:left;}
+footer{background:var(--primary);color:white;text-align:center;padding:20px;font-size:14px;}
+.disclaimer{font-size:12px;opacity:0.7;margin-top:5px;}
 </style>
 </head>
 <body>
@@ -138,9 +75,7 @@ footer{
 
 <section>
 <h2>Bitcoin Supply Progress</h2>
-<div class="progress">
-<div id="progressBar"></div>
-</div>
+<div class="progress"><div id="progressBar"></div></div>
 </section>
 
 <section>
@@ -171,7 +106,7 @@ footer{
 <script>
 let chart;
 
-// Live WebSocket BTC ticker
+// Live WebSocket BTC ticker (CORS safe)
 const socket = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@trade");
 socket.onmessage = (event)=>{
  const data = JSON.parse(event.data);
@@ -184,9 +119,5 @@ async function loadData(){
  const asset=document.getElementById("asset").value;
  const days=document.getElementById("days").value;
 
- const market=await fetch(
-  `https://api.coingecko.com/api/v3/coins/${asset}?localization=false&market_data=true`
- ).then(r=>r.json());
-
- const chartData=await fetch(
-  `https://api.coingecko.com/api/v3/coins/${asset}/market_chart?vs_currency=usd&days=${days}`
+ // CoinGecko CORS-enabled API
+ const market=await fetch(`https://api.coingecko.com/api/v3/c
